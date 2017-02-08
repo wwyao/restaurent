@@ -3,7 +3,7 @@ header("Content-Type: text/html;charset=utf-8");
 header('Access-Control-Allow-Origin:*');
 // header("Content-type:application/json;charset=utf-8");
 $restaurentId = $_GET['restaurentId'];
-$conn = mysqli_connect('localhost','root','','restaurent');
+$conn = mysqli_connect('localhost','root','root','restaurent');
 if($conn->connect_error){
 	echo "链接服务器错误";
 }else{
@@ -13,8 +13,8 @@ if($conn->connect_error){
 	$result = $conn->query($sql);
 	$arr = [];
 	while($tempArr = $result->fetch_object()){
-		$image_info = getimagesize($tempArr->imgsrc);
-		$tempArr->imgsrc = "data:{$image_info['mime']};base64," . chunk_split(base64_encode(file_get_contents($tempArr->imgsrc)));
+		// $image_info = getimagesize($tempArr->imgsrc);
+		// $tempArr->imgsrc = "data:{$image_info['mime']};base64," . chunk_split(base64_encode(file_get_contents($tempArr->imgsrc)));
 		array_push($arr, $tempArr);
 	}
 	echo json_encode($arr);

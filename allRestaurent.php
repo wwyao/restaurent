@@ -4,7 +4,7 @@ header('Access-Control-Allow-Origin:*');
 // header("Content-type:application/json;charset=utf-8");
 $start = $_GET['start'];
 $count = $_GET['count'];
-$conn = mysqli_connect('localhost','root','','restaurent');
+$conn = mysqli_connect('localhost','root','root','restaurent');
 if($conn->connect_error){
 	echo "链接服务器错误";
 }else{
@@ -18,8 +18,9 @@ if($conn->connect_error){
 		$tempObj->restaurentId = $tempArr->restaurentId;
 		$tempObj->title = $tempArr->title;
 		$tempObj->money = $tempArr->money;
-		$image_info = getimagesize($tempArr->imgSrc1);
-		$tempObj->imgSrc1 = "data:{$image_info['mime']};base64," . chunk_split(base64_encode(file_get_contents($tempArr->imgSrc1)));
+		// $image_info = getimagesize($tempArr->imgSrc1);
+		// $tempObj->imgSrc1 = "data:{$image_info['mime']};base64," . chunk_split(base64_encode(file_get_contents($tempArr->imgSrc1)));
+		$tempObj->imgSrc1 = $tempArr->imgSrc1;
 		$tempObj->address = $tempArr->address;
 		$tempObj->feature = $tempArr->feature;
 		array_push($arr, $tempObj);

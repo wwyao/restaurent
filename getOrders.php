@@ -5,7 +5,7 @@ header('Access-Control-Allow-Origin:*');
 $start = $_GET['start'];
 $count = $_GET['count'];
 $statu = $_GET['statu'];
-$conn = mysqli_connect('localhost','root','','restaurent');
+$conn = mysqli_connect('localhost','root','root','restaurent');
 if($conn->connect_error){
 	echo "链接服务器错误";
 }else{
