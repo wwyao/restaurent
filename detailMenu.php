@@ -1,5 +1,5 @@
 <?php
-// 获取某个餐厅的详细信息
+// 获取某个餐厅的菜单信息
 header("Content-Type: text/html;charset=utf-8");
 header('Access-Control-Allow-Origin:*');
 $menuId = $_GET['menuId'];
