@@ -5,6 +5,7 @@ header('Access-Control-Allow-Origin:*');
 $start = $_GET['start'];
 $count = $_GET['count'];
 $statu = $_GET['statu'];
+$userId = $_GET['userId'];
 
 $conn = mysqli_connect('localhost','root','root','restaurent');
 if($conn->connect_error){
@@ -12,7 +13,7 @@ if($conn->connect_error){
 }else{
 	$conn->query("set character set utf8");//读库
 	$conn->query("set names utf8");//写库
-	$sql = "select * from orders where statu = '$statu' limit $start,$count";
+	$sql = "select * from orders where statu = '$statu' and userId = '$userId' limit $start,$count";
 	$result = $conn->query($sql);
 	$arr = [];
 	while($tempArr = $result->fetch_object()){
@@ -21,6 +22,6 @@ if($conn->connect_error){
 		$tempArr->title = $tempRes->fetch_object()->title;
 		array_push($arr, $tempArr);
 	}
-	echo json_encode($arr);
+	echo json_encode(array_reverse($arr));
 }
 ?>
