@@ -10,10 +10,12 @@ if($conn->connect_error){
 }else{
 	$conn->query = "set names utf8";
 	$sql = "select * from Users where username='$username' and password='$password'";
-	$conn->query($sql);
+	$queryResult = $conn->query($sql);
 	$result = new stdClass();
 	if(mysqli_affected_rows($conn)){
 		$result->result = 1;
+		$tempobj = $queryResult->fetch_object();
+		$result->userId = $tempobj->userId;
 	}else{
 		$result->result = 0;
 	}
