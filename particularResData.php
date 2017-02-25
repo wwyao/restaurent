@@ -9,7 +9,11 @@ if($conn->connect_error){
 }else{
 	$conn->query("set character set 'utf8'");//读库
 	$conn->query("set names 'utf8'");//写库
-	$sql = "select * from allrestaurents where feature like '%$text%' limit $start,6";
+	if($text == '所有分类'){
+		$sql = "select * from allrestaurents limit $start,6";
+	}else{
+		$sql = "select * from allrestaurents where feature like '%$text%' limit $start,6";
+	}
 	$result = $conn->query($sql);
 	$arr = [];
 	while($tempArr = $result->fetch_object()){
